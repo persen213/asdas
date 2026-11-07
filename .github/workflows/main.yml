@@ -1,0 +1,29 @@
+name: Build the add-on
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+      - name: Check that no particle code is used
+        run: python3 tools/check_no_particles.py
+      - name: Build
+        run: |
+          chmod +x gradlew
+          ./gradlew build --no-daemon
+      - name: Keep the finished jar so it can be downloaded
+        uses: actions/upload-artifact@v4
+        with:
+          name: spatial-inversion-addon
+          path: build/libs/spatial-inversion-addon-forge-1.20.1-*.jar
