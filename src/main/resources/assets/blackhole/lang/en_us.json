@@ -1,0 +1,6 @@
+{
+  "item.blackhole.blackhole_factor": "Black Hole Factor",
+  "blackhole.ability.blackhole": "Black Hole",
+  "blackhole.skill.black_hole": "Black Hole",
+  "blackhole.skill.black_hole.desc": "Create a black hole at your target. Grows for 1s, pulls entities for 5s, then collapses with damage. Press again to collapse early."
+}
